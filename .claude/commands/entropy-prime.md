@@ -6,10 +6,18 @@ $ARGUMENTS
 
 ## Process
 
-1. Read `.claude/data/entropy-primers.md` — identify which directives are most relevant to this prompt.
-2. Read `.claude/data/banned-patterns.md` — identify which patterns a naive LLM would most likely reach for given this prompt.
+1. Read `.claude/data/real-world-pivots.md` — identify the best physical-world analog for this prompt.
+2. Read `.claude/data/entropy-primers.md` — identify which directives are most relevant to this prompt.
+3. Read `.claude/data/banned-patterns.md` — identify which patterns a naive LLM would most likely reach for given this prompt.
 
 ## Output
+
+### Real-World Pivot
+
+What physical object, environment, or system shares the informational shape of this UI? Walk the abstraction ladder:
+- **Analog**: Name it and explain why it fits
+- **Structural properties**: 3-5 properties extracted from the analog
+- **UI translation**: How each property becomes a layout/color/typography/interaction decision
 
 ### Predicted Slop
 

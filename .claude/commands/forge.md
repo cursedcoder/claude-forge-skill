@@ -8,15 +8,29 @@ $ARGUMENTS
 
 Execute these stages internally, thinking through each before producing output:
 
-### Stage 1: Entropy Priming
+### Stage 1: Real-World Pivot
 
-Read the file `.claude/data/entropy-primers.md`. Internalize its directives. Rewrite the user's request in your mind with these constraints applied — do not output the rewritten prompt, just use it to guide generation.
+Read the file `.claude/data/real-world-pivots.md`. Before writing a single line of code, identify a **physical-world analog** for what the user is asking for. Not a mood board reference, not another UI — a real object, environment, or system that shares the informational shape of this component.
 
-### Stage 2: Anti-Pattern Awareness
+Follow the abstraction ladder:
+1. **Name the analog** — what physical thing has the same information architecture?
+2. **Extract 3-5 structural properties** — how does that physical thing arrange information, signal urgency, group related elements, handle density?
+3. **Abstract into UI rules** — translate those properties into concrete layout, color, typography, and interaction decisions.
+
+Output your pivot as a brief note before generation:
+> **Pivot:** [analog] — [2-3 structural properties extracted] → [how they translate to UI decisions]
+
+This pivot anchors every subsequent decision. When in doubt during generation, refer back to the analog, not to UI conventions.
+
+### Stage 2: Entropy Priming
+
+Read the file `.claude/data/entropy-primers.md`. Internalize its directives. Apply them through the lens of your chosen pivot — the primers provide technique, the pivot provides direction.
+
+### Stage 3: Anti-Pattern Awareness
 
 Read the file `.claude/data/banned-patterns.md`. These patterns are forbidden. If at any point during generation you find yourself reaching for one of these patterns, stop and choose a structurally different approach. Do not merely tweak the banned pattern (e.g., changing `rounded-2xl` to `rounded-lg` is not avoidance — it's the same instinct with a different radius).
 
-### Stage 3: Generate
+### Stage 4: Generate
 
 Produce the component. During generation, actively apply these constraints:
 
@@ -28,11 +42,11 @@ Produce the component. During generation, actively apply these constraints:
 - **Semantic HTML.** Use the correct element. `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>`, `<dialog>` — not div soup.
 - **Accessibility is structural.** ARIA labels, keyboard navigation, contrast ratios, reduced-motion support. These are not add-ons.
 
-### Stage 4: Self-Critique
+### Stage 5: Self-Critique
 
 Read the file `.claude/data/critique-rubrics.md`. Apply the Default Rubric to your generated code. Be merciless. For each checklist item, identify specific lines that fail. Pay special attention to item 7: **"Can you identify that an LLM generated this? What gives it away?"**
 
-### Stage 5: Refine
+### Stage 6: Refine
 
 Address every finding from Stage 4. Do not patch — if the critique reveals a structural problem, restructure. If it reveals a generic pattern, reconceive the approach for that section entirely.
 
@@ -40,8 +54,9 @@ Address every finding from Stage 4. Do not patch — if the critique reveals a s
 
 Produce ONLY the final, refined component code. After the code, include a brief **Slop Assessment** section:
 
+- **Pivot**: The real-world analog used and how it shaped the design
 - **Originality score**: 1-10 (be honest — how distinguishable is this from default LLM output?)
-- **Design decisions**: List the 3 most distinctive choices you made and why
+- **Design decisions**: List the 3 most distinctive choices you made and why they trace back to the pivot
 - **Remaining concerns**: Any aspects you're not fully satisfied with
 
 Write the component file(s) to the project. If the component requires multiple files (e.g., component + types + styles), create all of them.
