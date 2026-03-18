@@ -4,6 +4,21 @@ Use these rubrics to evaluate generated UI components. Each question demands a s
 
 ---
 
+## Pivot Adherence Rubric (apply FIRST, before anything else)
+
+This is the most important rubric. A component with perfect CSS but no pivot adherence is still slop.
+
+1. **Pivot declaration**: Is there a `<!-- Pivot: ... -->` comment at the top of the component? Does it name a Rank 3+ analog with specific structural properties? If the pivot is Rank 1-2 or missing, **stop here — the component must be redesigned from scratch.**
+2. **Structural derivation**: For each major visual section (header, content area, navigation, widget, card, form), identify which specific pivot property dictates its layout. If any section has no pivot-derived structure, it is **pivot-orphaned** and must be flagged.
+3. **Color provenance from pivot**: Is the color palette derived from the analog's physical materials? Name the material for each color. "Amber because it's warm" is not pivot-derived. "Amber because the specimen case's felt lining was this tone" IS pivot-derived.
+4. **Typography registers**: Does the component use at least 2 distinct type treatments that map to different text roles in the analog? (e.g., "printed label" vs. "handwritten annotation")
+5. **Layout non-uniformity**: Does the grid/layout reflect the analog's spatial organization? If the analog has non-uniform compartments, the grid must be non-uniform. If the layout is `repeat(N, 1fr)`, justify why the analog has uniform divisions.
+6. **Widget/size differentiation**: If multiple sizes exist (small, medium, large widgets), are they structurally different objects derived from different aspects of the analog — not the same layout scaled up/down?
+7. **Interaction mapping**: Do state transitions (hover, focus, expand, toggle) map to physical gestures from the analog? Name the gesture for each interaction.
+8. **Brand distance**: Describe the top 3 most common LLM outputs for this brief. Count how many structural decisions in this component differ from ALL of those defaults. Minimum passing score: 7 different structural decisions.
+9. **Pivot coherence**: Remove the CSS colors and decorative properties (shadows, gradients, border-radius). Does the bare layout structure still feel distinct from a generic app layout? If it collapses into a standard card grid or list when stripped of decoration, the pivot only affected cosmetics, not structure.
+10. **Uniqueness prediction**: If you gave this same brief to 10 different LLMs without the pivot, estimate how many would produce something structurally similar. If >0, the pivot isn't working.
+
 ## Default Rubric (apply to every component)
 
 For each item, cite the specific line number(s) in the code that trigger the finding.
