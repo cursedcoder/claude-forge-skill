@@ -80,27 +80,12 @@ For each property, answer:
 - What **typography decision** does this force? (what's handwritten vs. printed, what's terse vs. verbose)
 - What **interaction decision** does this force? (what's the physical gesture this maps to?)
 
-### Level 3: Abstract into UI Principles (THE DERIVATIVE)
+### Level 3: Abstract into UI Principles
 
-This is where most pivots fail. The temptation is to carry the analog's vocabulary into the UI — naming colors after materials (`--brass`, `--felt`, `--ink`), using class names from the domain (`.specimen-well`, `.parts-tray`), or commenting code with analog references. This produces themed UIs, not structurally novel ones.
-
-The pivot is a mathematical derivative: it captures the **rate of change** — the underlying organizational logic — not the function itself. The output should be unrecognizable as coming from the analog.
-
-**The abstraction process:**
-
-1. Take each extracted property and write it in analog terms: "The parts tray has non-uniform compartments sized by the specimen"
-2. Strip ALL analog vocabulary: "A grid with non-uniform track sizes proportional to content density"
-3. Verify: could this principle have come from ANY analog, or does it still smell like the specific one? If it smells specific, abstract further.
-
-Each abstracted principle should be:
-- **Domain-neutral** — contains zero words from the analog's domain. No materials, no tools, no professional jargon from the analog.
-- **Structural** — describes a layout, color-encoding, type, or interaction rule, not an aesthetic.
-- **Non-obvious** — someone without the pivot context would not make this choice, even though the principle itself doesn't reveal the analog.
-- **Self-sufficient** — the principle works as a design rule even if you forget the analog entirely.
-
-**What appears in the code:** Only the abstract principles. CSS variable names are semantic (`--surface-primary`, `--accent`, `--text-data`), not material (`--brass`, `--felt`, `--marble`). Class names describe UI function (`.metric-group`, `.rating-display`), not analog objects (`.specimen-well`, `.balance-pan`). Comments explain the UI, not the analog.
-
-**What stays in the `<!-- Pivot: ... -->` comment only:** The analog name and rank, for design documentation. This is the only trace of the analog in the entire output.
+Remove representational detail, keep structural truth. Each abstraction should produce a CSS/HTML decision that is:
+- **Traceable** — you can explain why this choice exists by pointing to the analog
+- **Non-obvious** — someone without the pivot context would not make this choice
+- **Structural** — it affects layout, hierarchy, or interaction, not just color or decoration
 
 ### Level 4: Brand Sufficiency Test
 
@@ -127,25 +112,26 @@ Before proceeding to generation, evaluate:
 
 ### Chosen: Entomologist's specimen case (Rank 4)
 
-**Extracted properties → Abstract principles:**
+**Extracted properties:**
+1. Each specimen (metric) has a **fixed position in a physical grid** — the case has compartments, not a scrollable list
+2. **Handwritten labels** below each specimen — terse, specific, in a different hand than the printed classification
+3. The **glass lid** creates a separation between overview (through glass) and examination (lid open)
+4. Specimens are **arranged by taxonomy** (related species near each other), not by when they were collected
+5. **Size of the specimen determines compartment size** — not uniform boxes, the grid accommodates the content
+6. **Field notes** are kept separately but cross-referenced — date, location, conditions of collection
+7. The case itself has **physical texture** — wood frame, brass hinges, felt lining — that communicates seriousness and permanence
 
-| Analog property | Abstract principle (NO analog vocabulary) |
-|---|---|
-| Fixed position in a physical grid, compartments not a list | Metrics occupy fixed grid cells; position is stable across states, not reflowed |
-| Handwritten labels vs. printed classification | Two type registers: monospace for primary data, lighter sans for contextual annotation |
-| Glass lid separates overview from examination | Two interaction layers: compressed overview (default) and expanded detail (on interaction), with a distinct visual transition between them |
-| Arranged by taxonomy, not by collection date | Group by semantic relationship (what's related), not by temporal order |
-| Compartment size matches specimen size | Grid tracks proportional to information density — no uniform columns |
-| Field notes kept separately but cross-referenced | Secondary context (dates, conditions) in a visually subordinate zone, linked but not inline |
-| Physical texture communicates seriousness | Low-chroma muted surfaces with minimal decoration; the absence of ornamentation signals precision |
-| Vivid specimen against neutral background | One high-chroma accent for the single most important live metric; everything else recedes |
+**Abstracted UI rules:**
+1. Layout: CSS grid with **non-uniform track sizes** — `grid-template-columns: 2fr 1fr 1fr 3fr` not `repeat(4, 1fr)`. Metrics get proportional space based on their information density.
+2. Typography: Two type registers — a **formal monospace** for values (the "printed classification label") and a **lighter humanist sans** for contextual notes (the "handwritten field annotation"). Never the same font for both.
+3. Color: Palette derived from **natural specimens** — muted earth tones (amber, moss, slate) with high-chroma accents reserved for the single most important live metric. Like a vivid butterfly wing against a neutral felt background.
+4. Interaction: **Glass-lid metaphor** — default view is overview (small, dense, through-glass); tap/interact to "open the case" and examine detail. This replaces the generic "tap to expand card" with a deliberate layer transition.
+5. Spacing: **Non-uniform gutters** — like compartment dividers of different thicknesses separating related vs. unrelated specimens. Related metrics have 4px gaps; unrelated groups have 16px+.
+6. Widgets: Each widget size is a **different case** — small = single specimen vial, medium = two-compartment travel case, large = full display case. They're not "the same layout at different sizes" — they're structurally different objects.
+7. Brand mark: Derived from the **pin that holds the specimen** — a minimal cross/pin glyph, not a chess piece or puzzle icon.
+8. State changes: Rating up = specimen in excellent condition (full chroma). Rating down = specimen damaged (reduced chroma, subtle desaturation). No green/red — condition is communicated through the specimen's own visual vitality.
 
-**What appears in the code:**
-- `--surface-primary`, `--surface-recessed`, `--accent`, `--text-data`, `--text-context` (NOT `--felt`, `--brass`, `--specimen`)
-- `.metric-cell`, `.context-zone`, `.detail-layer` (NOT `.specimen-well`, `.glass-lid`, `.field-notes`)
-- No comments referencing entomology, specimens, or cases
-
-**Brand sufficiency:** 8 abstract principles, each producing non-obvious design decisions. No two designers would independently produce this structural system. The analog is invisible in the output. Passes all 5 tests.
+**Brand sufficiency:** 8 concrete rules, each producing non-obvious design decisions. No two designers would independently produce this visual system. Passes all 4 tests.
 
 ---
 
@@ -161,7 +147,7 @@ When the examples above don't fit, follow this process:
 
 4. **Extract 5-8 structural rules** from the environment. Fewer than 5 means you haven't looked closely enough. Each rule must force a concrete CSS/HTML decision.
 
-5. **Abstract completely.** Remove ALL representational detail. The output principles must contain zero vocabulary from the analog's domain. Not "felt lining becomes muted background" (still references felt) — instead: "low-chroma, low-contrast surface that recedes from foreground content." Not "glass lid becomes opacity layer" — instead: "two-layer interaction model: compressed default and expanded detail, with a distinct visual transition." The analog was scaffolding. Discard the scaffolding, keep the structure.
+5. **Abstract one level.** Remove representational detail, keep structural truth. A specimen case's felt lining becomes a muted low-chroma background surface. The glass lid becomes a blur/opacity layer transition. The brass hinges become subtle border accents at section joints. The handwritten labels become a secondary type register with lighter weight and different tracking.
 
 6. **Run the brand sufficiency test** (4 questions above). If it fails, choose a more intricate analog or combine two.
 
@@ -177,4 +163,3 @@ When the examples above don't fit, follow this process:
 - **Shallow analogy.** "A settings page is like a toolbox" that results in wrench icons but no structural change. The pivot must change layout, hierarchy, or interaction — not just imagery.
 - **First-thought pivots.** If the analog is the first thing you thought of, it's Rank 1 or 2. Push to the third, fourth, fifth idea. Intricacy lives at the edge of your associative reach.
 - **Pivoting from the domain itself.** A chess app pivoting from "chess" produces a chess-themed app, not a distinctively designed one. The pivot must come from OUTSIDE the domain to produce structural novelty.
-- **Literal pivot leakage.** THIS IS THE MOST COMMON FAILURE. The analog's vocabulary appears in the output: CSS variables named after materials (`--brass`, `--felt`, `--ink`, `--marble`), class names from the analog domain (`.specimen-well`, `.balance-pan`, `.parts-tray`), color comments referencing physical objects ("warm like aged wood"). The pivot is a thinking tool — it gets used during design and then DISCARDED from the output. If someone can read your CSS and guess the analog, the abstraction failed. The derivative, not the function.

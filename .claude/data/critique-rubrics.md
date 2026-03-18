@@ -65,20 +65,20 @@ For each item, cite the specific line number(s) in the code that trigger the fin
 
 ## Quality Scorecard
 
-Score each dimension 1-10. Provide a one-sentence justification with specific evidence (line numbers or element names) for each score.
+Score each dimension 1-10 with one-sentence evidence.
 
 | Dimension | What 1 means | What 10 means |
 |-----------|-------------|---------------|
-| **Simplicity** | Overloaded with elements, nested containers, excessive CSS properties. Every problem solved by adding more. | Every element earns its place. Removing anything would lose information. CSS is minimal — no redundant properties, no defensive styling. |
-| **Authenticity** | Generic LLM output. No pivot, or pivot is cosmetic. Could be produced by any model for any brief. Structural clichés throughout. | Every decision traces to the pivot. The design has a coherent internal logic that could only come from this specific analog. Impossible to replicate by accident. |
-| **Clear UI** | Visual hierarchy unreadable. Reading order ambiguous. User can't find the primary action or key information within 2 seconds. Multiple elements compete for attention. | Hierarchy is instant — primary content dominates, secondary recedes, actions are obvious. One clear reading path. Nothing competes. |
-| **Visual Noise** | Gratuitous decoration: shadows, gradients, borders, animations that communicate nothing. Every surface has a treatment. Busy. | Every visual property communicates state, hierarchy, or grouping. Decoration is absent or earned. Quiet surfaces amplify the few elements that need attention. |
-| **Alignment** | Elements float independently. Inconsistent margins. No grid discipline. Text baselines don't align across columns. Spacing is arbitrary. | Everything snaps to a visible or implied grid. Cross-component alignment is enforced (via subgrid or consistent tokens). Baseline alignment in tabular data. Spatial rhythm is audible. |
+| **Simplicity** | Overloaded, excessive nesting, defensive styling. Every problem solved by adding more. | Every element earns its place. Removing anything would lose information. |
+| **Authenticity** | Generic LLM output. No pivot, or pivot is cosmetic. Could be produced by any model. | Every decision traces to the pivot. Impossible to replicate by accident. |
+| **Clear UI** | Hierarchy unreadable. Can't find key information within 2 seconds. Elements compete for attention. | Hierarchy is instant. One clear reading path. Nothing competes. |
+| **Visual Noise** | Gratuitous decoration: shadows, gradients, animations that communicate nothing. Busy. | Every visual property communicates state, hierarchy, or grouping. Quiet surfaces. |
+| **Alignment** | Elements float independently. No grid discipline. Spacing is arbitrary. | Everything snaps to a grid. Baseline alignment in tabular data. Spatial rhythm is audible. |
 
-**Composite score**: Average of all 5 dimensions. Below 6 = needs structural rework. 6-7 = acceptable with specific fixes. 8+ = production-quality.
+**Composite score**: Average of all 5. Below 6 = structural rework. 6-7 = acceptable with fixes. 8+ = production-quality.
 
 ## Additional Scoring
 
-- **Originality score** (1-10): 1 = indistinguishable from default LLM output. 5 = has some considered decisions but overall structure is generic. 10 = every decision reflects specific intent, impossible to identify as LLM-generated.
-- **Slop density**: Count of individual findings flagged as generic/default/unconsidered, divided by total lines of code. Express as a percentage.
-- **Top 3 changes**: The three modifications that would most improve originality, in order of impact.
+- **Originality score** (1-10): 1 = indistinguishable from default LLM output. 5 = some considered decisions. 10 = impossible to identify as LLM-generated.
+- **Slop density**: Findings / total lines of code as percentage.
+- **Top 3 changes**: Ordered by impact.
