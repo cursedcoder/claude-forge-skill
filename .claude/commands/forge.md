@@ -110,6 +110,17 @@ After the code, include the **Forge Report**:
 - **Pivot**: Analog, rank, and the 5-8 structural rules it generated
 - **Brand sufficiency**: Results of the 4-question test
 - **Pivot adherence**: For each major section, which pivot property drives it
+- **Quality scorecard** (from critique-rubrics.md):
+
+| Dimension | Score | Evidence |
+|-----------|-------|----------|
+| Simplicity | /10 | ... |
+| Authenticity | /10 | ... |
+| Clear UI | /10 | ... |
+| Visual Noise | /10 | ... |
+| Alignment | /10 | ... |
+| **Composite** | /10 | |
+
 - **Originality score**: 1-10 (be brutally honest — 7+ requires Rank 4 pivot with full adherence)
 - **Design decisions**: The 3 most distinctive choices and which pivot property they trace to
-- **Remaining concerns**: Any sections where pivot adherence is weaker
+- **Remaining concerns**: Any sections where pivot adherence is weaker or composite score is below 8
