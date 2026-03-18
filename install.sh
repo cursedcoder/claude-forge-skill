@@ -24,11 +24,22 @@ cp .claude/commands/critique.md "$TARGET/commands/"
 cp .claude/commands/refine.md "$TARGET/commands/"
 cp .claude/commands/debate.md "$TARGET/commands/"
 cp .claude/commands/entropy-prime.md "$TARGET/commands/"
+cp .claude/commands/verify.md "$TARGET/commands/"
+
+# Install verify script to project root or home bin
+if [ "$1" = "--project" ] && [ -n "$2" ]; then
+  cp verify.sh "$2/verify.sh"
+  chmod +x "$2/verify.sh"
+else
+  cp verify.sh "$HOME/.claude/verify.sh"
+  chmod +x "$HOME/.claude/verify.sh"
+fi
 
 echo ""
 echo "Installed:"
-echo "  Commands: forge, critique, refine, debate, entropy-prime"
+echo "  Commands: forge, critique, refine, debate, entropy-prime, verify"
 echo "  Data:     banned-patterns, entropy-primers, critique-rubrics, real-world-pivots"
+echo "  Script:   verify.sh"
 echo ""
 if [ "$1" = "--project" ]; then
   echo "Use as: /project:forge <description>"
