@@ -18,20 +18,35 @@ Read the file `.claude/data/real-world-pivots.md` completely.
 
 **Step 3: Choose the most intricate viable pivot.** Prefer Rank 4 over Rank 3. Between two Rank 4s, choose the one that produces more structural rules.
 
-**Step 4: Deep extraction.** From the chosen analog, extract **5-8 structural properties** and translate each into a concrete design rule covering:
-- Layout (grid structure, spatial relationships, proportions)
-- Color (palette derivation, what color encodes)
-- Typography (type registers, scale logic, what's terse vs. verbose)
-- Interaction (physical gesture mapping, state transitions)
-- Spacing (rhythm, non-uniformity, what proximity means)
+**Step 4: Deep extraction.** From the chosen analog, extract **5-8 structural properties** and translate each into an **abstract design principle** — NOT a literal reference.
 
-**Step 5: Brand sufficiency test.** Answer these 4 questions:
+CRITICAL: The pivot is a thinking tool, not a theme. You are extracting the **derivative** — the underlying structural logic — not the analog itself. Like a mathematical derivative captures rate of change rather than the function, your design rules must capture the analog's organizational logic without resembling it visually.
+
+For each property, produce TWO columns:
+- **Analog property**: what the physical thing does (e.g., "parts tray has non-uniform compartments sized by content")
+- **Abstract principle**: the structural rule, stripped of all analog vocabulary (e.g., "grid tracks proportional to information density, no uniform columns")
+
+The abstract principle column must contain ZERO words from the analog domain. No "tray", "bench", "specimen", "brass", "felt", "ledger", "stamp", "ink". These are thinking scaffolding — they get discarded, not shipped.
+
+Cover these dimensions:
+- Layout (proportions, spatial relationships, grouping logic)
+- Color (what color encodes semantically, contrast strategy, palette derivation method)
+- Typography (number of registers, what each register signals, scale logic)
+- Interaction (what state changes communicate, timing rationale)
+- Spacing (rhythm logic, what proximity/distance signals)
+
+**Step 5: Abstraction test.** Before the brand sufficiency test, verify the abstraction:
+- Read your abstract principles WITHOUT the analog column. Do they still sound like they reference the analog? If someone could guess "watchmaker" or "assayer" from the principles alone, they're too literal. Rewrite them.
+- Check for smuggled analog vocabulary in your design rules. "Felt-like background" = FAIL. "Low-chroma muted surface" = PASS.
+
+**Step 6: Brand sufficiency test.** Answer these 5 questions:
 1. Could >1 of 10 designers independently produce something structurally similar without knowing the pivot? (Must be NO)
-2. Could someone guess the pivot from the finished UI? (Must be NO — if yes, too literal/skeuomorphic)
-3. Does the pivot produce 8+ reusable design rules that sustain multiple screens? (Must be YES)
-4. Do 7+ structural decisions differ from the top 5 most common LLM outputs for this brief? (Must be YES)
+2. Could someone guess the pivot from the finished UI? (Must be NO — if yes, the analog leaked through as a theme)
+3. Could someone guess the pivot from CSS comments and variable names? (Must be NO — no `--felt`, `--brass`, `--stamp`, `--tray` in the code)
+4. Does the pivot produce 8+ reusable design rules that sustain multiple screens? (Must be YES)
+5. Do 7+ structural decisions differ from the top 5 most common LLM outputs for this brief? (Must be YES)
 
-If any answer fails, **go back to Step 1 and choose a different pivot.** Do not proceed.
+If any answer fails, **go back and re-abstract.** The usual failure is #2 or #3 — the analog leaking into the output.
 
 **Output your pivot analysis before any code:**
 
@@ -44,15 +59,13 @@ If any answer fails, **go back to Step 1 and choose a different pivot.** Do not 
 >
 > **Chosen:** [analog] (Rank [N])
 >
-> **Structural rules:**
-> 1. Layout: [specific rule] ← [property from analog]
-> 2. Color: [specific rule] ← [property from analog]
-> 3. Typography: [specific rule] ← [property from analog]
-> 4. Interaction: [specific rule] ← [property from analog]
-> 5. Spacing: [specific rule] ← [property from analog]
-> 6-8. [additional rules]
+> **Extraction → Abstraction:**
+> | Analog property | Abstract principle (no analog vocabulary) |
+> |---|---|
+> | [what the physical thing does] | [structural rule, domain-neutral] |
+> | ... | ... |
 >
-> **Brand sufficiency:** [pass/fail each of the 4 tests]
+> **Brand sufficiency:** [pass/fail each of the 5 tests]
 
 ### Stage 2: Entropy Priming
 
@@ -64,15 +77,16 @@ Read `.claude/data/banned-patterns.md`. These patterns are forbidden. But now ev
 
 ### Stage 4: Generate
 
-Produce the component. **Every decision must trace back to the pivot.** During code review, you should be able to point to any element and say "this exists because [pivot analog property]." If you can't, the element is default-thinking, not pivot-thinking.
+Produce the component. **Every decision must trace back to an abstract principle from Step 4, NOT to the analog directly.** The analog was a thinking tool — it does not appear in the output. No CSS variable names, comments, class names, or visual treatments should reference the analog's domain.
 
 Hard constraints:
-- **Every CSS value must be justifiable via the pivot.** Not "16px because it's a good spacing" but "16px because the analog's compartment dividers were approximately this thick relative to specimen size."
-- **Every color must be derived from the pivot's material world.** Not OKLCH for its own sake — OKLCH values that map to the analog's physical palette (wood, glass, felt, brass, paper, ink).
-- **Layout must be dictated by the pivot's spatial organization.** If the analog uses non-uniform compartments, the grid must be non-uniform. If the analog uses fixed positions, elements must not reflow.
-- **Typography must reflect the pivot's text registers.** If the analog has handwritten vs. printed, use two distinct type treatments. If the analog has terse labels vs. verbose notes, enforce the same brevity/verbosity split.
-- **Widget sizes are different objects, not the same layout at different scales.** The pivot should dictate what each size represents (e.g., small = field sample vial, medium = travel case, large = museum display case).
+- **Every CSS value must be justifiable via an abstract principle.** Not "16px because the analog's compartments were this thick" but "16px because the spacing rhythm uses a 4px base where this gap signals weak grouping."
+- **Every color must be derived from the abstract color principle.** If the principle says "low-chroma muted surfaces with one high-chroma semantic accent," the palette should follow that rule. Do NOT name colors after the analog's materials — no `--brass`, `--felt`, `--ink`, `--marble`, `--wood`. Use semantic names: `--surface`, `--accent`, `--danger`, `--muted`, `--emphasis`.
+- **Layout must follow the abstract spatial principle.** If the principle says "non-uniform proportions based on information density," the grid should be non-uniform. But class names and comments describe the UI, not the analog: `.stats-primary` not `.specimen-well`, `.metric-group` not `.parts-tray`.
+- **Typography must follow the abstract register principle.** If the principle says "two registers: dense/numeric vs. contextual/flowing," use two distinct type treatments. But don't call them "ledger hand" and "field notes" — call them `--font-data` and `--font-prose` or similar.
+- **Widget sizes are different objects, not the same layout at different scales.** The abstract principle should define what changes structurally at each size — but describe it in UI terms ("small shows one metric, medium shows comparison, large shows full context"), not analog terms ("small = pocket case, large = display case").
 - **Semantic HTML.** The correct element always. `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>`, `<dialog>`.
+- **The analog is invisible in the output.** If you deleted the `<!-- Pivot: ... -->` comment, nothing in the code should hint at the analog. This is the acid test of proper abstraction.
 - **Accessibility is structural.** ARIA labels, keyboard navigation, contrast ratios, reduced-motion support.
 
 ### Stage 5: Pivot Adherence Check
@@ -96,20 +110,37 @@ Read `.claude/data/critique-rubrics.md`. Apply the Default Rubric AND the Pivot 
 
 ### Stage 7: Refine
 
-Address every finding. **Pivot-orphaned sections are the top priority** — they're where slop creeps back in. When fixing, don't patch: go back to the pivot's properties and ask "what would the analog do here?" Then abstract that answer into UI.
+Address every finding. **Pivot-orphaned sections are the top priority** — they're where slop creeps back in. When fixing, don't patch: go back to the abstract principles and derive a structural solution.
+
+### Stage 8: Analog Scrub
+
+Before outputting, do a final pass to remove ALL analog vocabulary from the code:
+- Search CSS variables for material words (`--brass`, `--felt`, `--ink`, `--marble`, `--wood`, `--stamp`, `--ledger`, etc.). Replace with semantic names (`--surface`, `--accent`, `--emphasis`, `--muted`).
+- Search class names for analog domain words. Replace with UI-descriptive names.
+- Search comments for analog references. Remove or replace with UI-language descriptions.
+- The ONLY place the analog appears is the `<!-- Pivot: ... -->` comment at the top.
+
+### Stage 9: Automated Verify
+
+Run `verify.sh` (or `~/.claude/verify.sh`) against the generated file. Report the output. If it finds issues:
+- Pivot leakage → go back to Stage 8
+- Banned patterns → go back to Stage 7
+- Missing accessibility → fix inline
+
+Do NOT skip this step. Do NOT summarize the verify output — show it verbatim.
 
 ## Output
 
 Write the component file(s) to the project with a pivot declaration comment at the top:
 ```
-<!-- Pivot: [analog] (Rank [N]) — [3 key structural properties] -->
+<!-- Pivot: [analog] (Rank [N]) — [3 abstract structural principles] -->
 ```
 
 After the code, include the **Forge Report**:
 
-- **Pivot**: Analog, rank, and the 5-8 structural rules it generated
-- **Brand sufficiency**: Results of the 4-question test
-- **Pivot adherence**: For each major section, which pivot property drives it
+- **Pivot**: Analog, rank, and the extraction → abstraction table
+- **Brand sufficiency**: Results of the 5-question test (including: can someone guess the analog from the CSS?)
+- **Pivot adherence**: For each major section, which abstract principle drives it
 - **Quality scorecard** (from critique-rubrics.md):
 
 | Dimension | Score | Evidence |
@@ -122,5 +153,6 @@ After the code, include the **Forge Report**:
 | **Composite** | /10 | |
 
 - **Originality score**: 1-10 (be brutally honest — 7+ requires Rank 4 pivot with full adherence)
-- **Design decisions**: The 3 most distinctive choices and which pivot property they trace to
+- **Design decisions**: The 3 most distinctive choices and which abstract principle they trace to
+- **Verify results**: Verbatim output from verify.sh
 - **Remaining concerns**: Any sections where pivot adherence is weaker or composite score is below 8

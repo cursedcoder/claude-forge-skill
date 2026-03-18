@@ -183,8 +183,57 @@ if [ "$HERO_PATTERN" -eq 0 ] && [ "$CARD_GRID" -le 2 ] && [ "$TESTIMONIAL" -eq 0
 fi
 echo ""
 
-# ── 7. Accessibility basics ──────────────────────────
-echo "${BOLD}7. Accessibility Basics${NC}"
+# ── 7. Pivot Leakage (analog vocabulary in code) ─────
+echo "${BOLD}7. Pivot Leakage${NC}"
+
+# Common analog material/domain words that shouldn't appear in CSS/class names
+declare -a ANALOG_WORDS=(
+  "brass:analog material"
+  "felt:analog material"
+  "marble:analog material"
+  "ink:analog material (use 'text' or 'foreground')"
+  "wood:analog material"
+  "specimen:analog domain"
+  "tray:analog domain"
+  "cabinet:analog domain"
+  "ledger:analog domain"
+  "stamp:analog domain"
+  "bezel:analog domain"
+  "loupe:analog domain"
+  "bench:analog domain"
+  "linen:analog material"
+  "parchment:analog material"
+  "vellum:analog material"
+  "patina:analog material"
+)
+
+LEAKS=0
+# Only check inside style/class attributes, not the pivot comment
+CONTENT_WITHOUT_PIVOT=$(grep -v '<!-- Pivot:' "$FILE")
+for entry in "${ANALOG_WORDS[@]}"; do
+  WORD="${entry%%:*}"
+  DESC="${entry##*:}"
+  # Check CSS variables and class names (excluding the pivot comment line)
+  COUNT=$(echo "$CONTENT_WITHOUT_PIVOT" | grep -ci "\-\-${WORD}\|\.${WORD}\|${WORD}-\|${WORD}_" 2>/dev/null || true)
+  if [ "$COUNT" -gt 0 ]; then
+    echo "   ${RED}✗${NC} '${WORD}' in code (${COUNT}x) — ${DESC}"
+    LEAK_LINES=$(echo "$CONTENT_WITHOUT_PIVOT" | grep -ni "\-\-${WORD}\|\.${WORD}\|${WORD}-\|${WORD}_" | head -3 | awk -F: '{print "     line "$1": "$2}')
+    echo "$LEAK_LINES"
+    LEAKS=$((LEAKS + COUNT))
+  fi
+done
+
+if [ "$LEAKS" -eq 0 ]; then
+  echo "   ${GREEN}No analog vocabulary leaked into code${NC}"
+else
+  echo ""
+  echo "   ${RED}${LEAKS} analog leaks — pivot used literally, not as derivative${NC}"
+  FINDINGS=$((FINDINGS + LEAKS))
+fi
+echo ""
+
+# ── 8. Accessibility basics ──────────────────────────
+echo "${BOLD}8. Accessibility Basics${NC}"
 
 ARIA_COUNT=$(grep -c 'aria-' "$FILE" 2>/dev/null || true)
 ROLE_COUNT=$(grep -c 'role=' "$FILE" 2>/dev/null || true)
