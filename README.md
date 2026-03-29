@@ -106,6 +106,26 @@ All in `.claude/data/`:
 /project:entropy-prime <description>
 ```
 
+## Install
+
+**Global** (available in all projects as `/user:forge`, `/user:critique`, etc.):
+
+```bash
+git clone https://github.com/cursedcoder/claude-forge-skill.git
+cd claude-forge-skill
+./install.sh
+```
+
+**Per-project** (available as `/project:forge`, `/project:critique`, etc.):
+
+```bash
+git clone https://github.com/cursedcoder/claude-forge-skill.git
+cd claude-forge-skill
+./install.sh --project /path/to/your/project
+```
+
+This copies the skill commands and data files into the appropriate `.claude/` directory. No dependencies required.
+
 ## Tuning
 
 The system improves as you expand the data files:
