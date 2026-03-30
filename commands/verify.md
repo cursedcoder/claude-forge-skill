@@ -10,12 +10,10 @@ If no file is specified, find the most recently modified HTML file in the projec
 
 ### Step 1: Automated Scan (no self-assessment — trust the script)
 
-Run the `verify.sh` script against the target file. Check these locations in order: `./verify.sh`, `~/.claude/verify.sh`.
+Run the `verify.sh` script against the target file:
 
 ```bash
-./verify.sh <filepath>
-# or
-~/.claude/verify.sh <filepath>
+${CLAUDE_PLUGIN_ROOT}/scripts/verify.sh <filepath>
 ```
 
 Report the script's output verbatim — do NOT editorialize or soften its findings. If the script says SLOP DETECTED, do not downplay it.
@@ -24,7 +22,7 @@ Report the script's output verbatim — do NOT editorialize or soften its findin
 
 Now read the target file yourself. You have NOT seen any prior forge report or self-assessment. You are reviewing this as a stranger encountering the code for the first time.
 
-Read `.claude/data/critique-rubrics.md` and `.claude/data/real-world-pivots.md`.
+Read `${CLAUDE_PLUGIN_ROOT}/data/critique-rubrics.md` and `${CLAUDE_PLUGIN_ROOT}/data/real-world-pivots.md`.
 
 **Pivot verification (be skeptical):**
 - If a pivot is declared, do NOT assume it's honest. Verify:

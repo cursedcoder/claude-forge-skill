@@ -10,7 +10,7 @@ Execute these stages in order. **Stage 1 is the most important stage. Spend the 
 
 ### Stage 1: Real-World Pivot (THE CRITICAL STAGE)
 
-Read the file `.claude/data/real-world-pivots.md` completely.
+Read the file `${CLAUDE_PLUGIN_ROOT}/data/real-world-pivots.md` completely.
 
 **Step 1: Generate 5 candidate analogs.** For each, state the analog and its intricacy rank (1-4). Push past your first instincts — your first 1-2 ideas are almost certainly Rank 1-2 clichés.
 
@@ -56,11 +56,11 @@ If any answer fails, **go back to Step 1 and choose a different pivot.** Do not 
 
 ### Stage 2: Entropy Priming
 
-Read `.claude/data/entropy-primers.md`. Apply its directives **through the lens of the pivot** — the primers provide CSS technique, the pivot provides structural direction. When a primer and the pivot conflict, the pivot wins. The pivot is the brand; the primers are craft.
+Read `${CLAUDE_PLUGIN_ROOT}/data/entropy-primers.md`. Apply its directives **through the lens of the pivot** — the primers provide CSS technique, the pivot provides structural direction. When a primer and the pivot conflict, the pivot wins. The pivot is the brand; the primers are craft.
 
 ### Stage 3: Anti-Pattern Awareness
 
-Read `.claude/data/banned-patterns.md`. These patterns are forbidden. But now evaluate them against the pivot: if the pivot's structural rules naturally avoid banned patterns (as they should at Rank 3+), you're on the right track. If you find yourself needing to consciously avoid banned patterns, your pivot isn't generating enough structural novelty — consider going back to Stage 1.
+Read `${CLAUDE_PLUGIN_ROOT}/data/banned-patterns.md`. These patterns are forbidden. But now evaluate them against the pivot: if the pivot's structural rules naturally avoid banned patterns (as they should at Rank 3+), you're on the right track. If you find yourself needing to consciously avoid banned patterns, your pivot isn't generating enough structural novelty — consider going back to Stage 1.
 
 ### Stage 4: Generate
 
@@ -89,7 +89,7 @@ If any section answers "none" to questions 1-3, or "no" to question 4, that sect
 
 ### Stage 6: Self-Critique
 
-Read `.claude/data/critique-rubrics.md`. Apply the Default Rubric AND the Pivot Adherence Rubric. Pay special attention to:
+Read `${CLAUDE_PLUGIN_ROOT}/data/critique-rubrics.md`. Apply the Default Rubric AND the Pivot Adherence Rubric. Pay special attention to:
 - **LLM fingerprint** (item 7): "Can you identify that an LLM generated this?"
 - **Pivot coherence**: "Does every section trace back to the pivot, or do some sections quietly revert to standard UI patterns?"
 - **Brand uniqueness**: "If 10 LLMs were given this same brief, would any produce something structurally similar?"
@@ -100,7 +100,7 @@ Address every finding. **Pivot-orphaned sections are the top priority** — they
 
 ### Stage 8: Automated Verify
 
-Run `verify.sh` (check `./verify.sh` or `~/.claude/verify.sh`) against the generated file. Report the output verbatim. If it finds banned patterns or missing accessibility, fix and re-run.
+Run `${CLAUDE_PLUGIN_ROOT}/scripts/verify.sh` against the generated file. Report the output verbatim. If it finds banned patterns or missing accessibility, fix and re-run.
 
 ## Output
 

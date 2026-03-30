@@ -11,10 +11,10 @@ If no file is specified, ask the user which file to refine.
 ## Process
 
 1. Read the target file(s).
-2. Read `.claude/data/real-world-pivots.md` — understand the intricacy ranking system and brand sufficiency tests.
-3. Read `.claude/data/banned-patterns.md` — identify every match or near-match.
-4. Read `.claude/data/critique-rubrics.md` — apply the Pivot Adherence Rubric internally.
-5. Read `.claude/data/entropy-primers.md` — identify which primers are most relevant.
+2. Read `${CLAUDE_PLUGIN_ROOT}/data/real-world-pivots.md` — understand the intricacy ranking system and brand sufficiency tests.
+3. Read `${CLAUDE_PLUGIN_ROOT}/data/banned-patterns.md` — identify every match or near-match.
+4. Read `${CLAUDE_PLUGIN_ROOT}/data/critique-rubrics.md` — apply the Pivot Adherence Rubric internally.
+5. Read `${CLAUDE_PLUGIN_ROOT}/data/entropy-primers.md` — identify which primers are most relevant.
 6. If the user provided direction (after `—`), integrate that alongside the systematic findings.
 
 ## Pivot-First Refinement

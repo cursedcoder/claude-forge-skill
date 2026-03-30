@@ -6,9 +6,9 @@ $ARGUMENTS
 
 ## Process
 
-1. Read `.claude/data/real-world-pivots.md` — internalize the intricacy ranking system.
-2. Read `.claude/data/entropy-primers.md` — identify relevant design directives.
-3. Read `.claude/data/banned-patterns.md` — identify highest-risk patterns for this brief.
+1. Read `${CLAUDE_PLUGIN_ROOT}/data/real-world-pivots.md` — internalize the intricacy ranking system.
+2. Read `${CLAUDE_PLUGIN_ROOT}/data/entropy-primers.md` — identify relevant design directives.
+3. Read `${CLAUDE_PLUGIN_ROOT}/data/banned-patterns.md` — identify highest-risk patterns for this brief.
 
 ## Output
 

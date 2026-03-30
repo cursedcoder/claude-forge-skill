@@ -8,7 +8,7 @@ If no file is specified, ask the user which file to review.
 
 ## Process
 
-Read `.claude/data/critique-rubrics.md`, `.claude/data/entropy-primers.md`, and `.claude/data/real-world-pivots.md` for reference, then conduct four sequential reviews.
+Read `${CLAUDE_PLUGIN_ROOT}/data/critique-rubrics.md`, `${CLAUDE_PLUGIN_ROOT}/data/entropy-primers.md`, and `${CLAUDE_PLUGIN_ROOT}/data/real-world-pivots.md` for reference, then conduct four sequential reviews.
 
 ---
 

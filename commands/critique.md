@@ -9,9 +9,9 @@ If no file is specified, ask the user which file to critique.
 ## Process
 
 1. Read the file(s) thoroughly.
-2. Read `.claude/data/critique-rubrics.md` — apply ALL rubrics, starting with the **Pivot Adherence Rubric**.
-3. Read `.claude/data/banned-patterns.md` — scan the code for any matches or near-matches.
-4. Read `.claude/data/real-world-pivots.md` — understand the intricacy ranking system.
+2. Read `${CLAUDE_PLUGIN_ROOT}/data/critique-rubrics.md` — apply ALL rubrics, starting with the **Pivot Adherence Rubric**.
+3. Read `${CLAUDE_PLUGIN_ROOT}/data/banned-patterns.md` — scan the code for any matches or near-matches.
+4. Read `${CLAUDE_PLUGIN_ROOT}/data/real-world-pivots.md` — understand the intricacy ranking system.
 
 ## Output Format
 
