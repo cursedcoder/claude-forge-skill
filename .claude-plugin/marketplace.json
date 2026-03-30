@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "forge",
-      "source": ".",
+      "source": "./",
       "description": "Anti-slop UI generation engine — real-world pivots, entropy primers, banned patterns, and structured critique rubrics"
     }
   ]
