@@ -4,16 +4,17 @@ Claude Code plugin that kills generic LLM-generated UI. Forces every design deci
 
 ## Install
 
-Inside Claude Code, run:
+In Claude Code:
 
 ```
-/plugin install github:cursedcoder/claude-forge-skill
+/plugin marketplace add cursedcoder/claude-forge-skill
+/plugin install forge@anti-slop-forge
 ```
 
-Or test locally without installing:
+Or test locally:
 
 ```bash
-claude --plugin-dir ./claude-forge-skill
+claude --plugin-dir /path/to/claude-forge-skill
 ```
 
 ## Commands

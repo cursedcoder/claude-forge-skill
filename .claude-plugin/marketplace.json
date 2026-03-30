@@ -1,0 +1,13 @@
+{
+  "name": "anti-slop-forge",
+  "owner": {
+    "name": "cursedcoder"
+  },
+  "plugins": [
+    {
+      "name": "forge",
+      "source": ".",
+      "description": "Anti-slop UI generation engine — real-world pivots, entropy primers, banned patterns, and structured critique rubrics"
+    }
+  ]
+}
