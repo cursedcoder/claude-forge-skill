@@ -1,5 +1,5 @@
 {
-  "name": "claude-forge",
+  "name": "forge",
   "description": "Anti-slop UI generation engine — real-world pivots, entropy primers, banned patterns, and structured critique rubrics that make LLM-generated UI impossible to identify as AI-made",
   "version": "1.0.0",
   "author": {

@@ -12,12 +12,12 @@ claude --plugin-dir ./claude-forge-skill
 
 | Command | What it does |
 |---------|-------------|
-| `/claude-forge:forge <brief>` | Full pipeline: pivot selection, generation, self-critique, verify |
-| `/claude-forge:critique <file>` | 36-item rubric evaluation across 4 dimensions |
-| `/claude-forge:refine <file> — <direction>` | Rewrite with antislop fixes + your feedback |
-| `/claude-forge:debate <file>` | 4-perspective review (pivot auditor, typographer, brutalist, a11y) then rewrite |
-| `/claude-forge:entropy-prime <brief>` | Dry run — shows predicted slop vs transformed brief, no code |
-| `/claude-forge:verify <file>` | Automated pattern scan + independent quality scorecard |
+| `/forge:anti-slop-ui <brief>` | Full pipeline: pivot selection, generation, self-critique, verify |
+| `/forge:critique <file>` | 36-item rubric evaluation across 4 dimensions |
+| `/forge:refine <file> — <direction>` | Rewrite with antislop fixes + your feedback |
+| `/forge:debate <file>` | 4-perspective review (pivot auditor, typographer, brutalist, a11y) then rewrite |
+| `/forge:entropy-prime <brief>` | Dry run — shows predicted slop vs transformed brief, no code |
+| `/forge:verify <file>` | Automated pattern scan + independent quality scorecard |
 
 ## Data
 
